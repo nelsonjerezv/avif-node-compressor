@@ -2,11 +2,12 @@
   "name": "avif-node-compress",
   "version": "1.0.0",
   "description": "Script Node.js para convertir imágenes a AVIF en lotes",
+  "type": "module", 
   "main": "compress.js",
   "scripts": {
     "start": "node compress.js"
   },
   "dependencies": {
-    "sharp": "^0.31.0"
+    "sharp": "^0.34.5"
   }
 }
