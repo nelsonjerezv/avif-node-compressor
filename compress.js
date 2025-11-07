@@ -23,7 +23,7 @@ fs.readdir(inputDir, (err, files) => {
 
     if (['.jpg', '.jpeg', '.png'].includes(ext)) {
       sharp(inputPath)
-        .avif({ quality: 50 }) // Puedes ajustar la calidad
+        .avif({ quality: 25 }) // Puedes ajustar la calidad
         .toFile(outputPath)
         .then(() => console.log(`Convertido: ${file} -> ${baseName}.avif`))
         .catch(err => console.error(`Error al convertir ${file}:`, err));
