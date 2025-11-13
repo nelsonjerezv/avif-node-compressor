@@ -23,14 +23,15 @@ fs.readdir(inputDir, (err, files) => {
     const ext = path.extname(file).toLowerCase();
     const baseName = path.basename(file, ext);
     const inputPath = path.join(inputDir, file);
-    const outputPath = path.join(outputDir, `${baseName}.avif`);
+    const outputPath = path.join(outputDir, `${baseName}_processed.avif`);
 
     if (['.jpg', '.jpeg', '.png'].includes(ext)) {
       sharp(inputPath)
-        .composite([{ input: watermarkBuffer, tile: true, blend: 'over', opacity: 0.3 }])
-        .avif({ quality: 25 })
+        .resize(1920, 1080, { fit: 'inside', withoutEnlargement: true })
+        .composite([{ input: watermarkBuffer, tile: true, blend: 'over'}])
+        .avif({ quality: 50 })
         .toFile(outputPath)
-        .then(() => console.log(`Convertido: ${file} -> ${baseName}.avif con watermark`))
+        .then(() => console.log(`Convertido: ${file} -> ${baseName}_proccesed.avif con watermark`))
         .catch(err => console.error(`Error al convertir ${file}:`, err));
     }
   });
